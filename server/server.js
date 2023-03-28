@@ -9,13 +9,17 @@ if (!MONGO_URL) {
   console.error("Missing MONGO_URL environment variable");
   process.exit(1);
 }
-
 const app = express();
 app.use(express.json());
 
-app.get("api/cards/", async (req, res) => {
-  const cards = await CardModel.find();
-  return res.json(cards);
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, PATCH");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
 });
 
 const createNewCard = async (card) => {
@@ -27,7 +31,12 @@ const createNewCard = async (card) => {
   }
 };
 
-app.post("api/cards", (req, res, next) => {
+app.get("/api/cards/", async (req, res) => {
+  const cards = await CardModel.find();
+  return res.json(cards);
+});
+
+app.post("/api/cards/", (req, res, next) => {
   const cards = req.body;
 
   cards.forEach((card) => {
@@ -39,7 +48,7 @@ const main = async () => {
   await mongoose.connect(MONGO_URL);
   app.listen(PORT, () => {
     console.log("App is listening on 8080");
-    console.log("Try /api/employees route right now");
+    console.log("Try /api/cards route right now");
   });
 };
 
