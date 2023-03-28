@@ -7,6 +7,7 @@ import Layout from "./Pages/Layout/Layout";
 import ErrorPage from "./Pages/ErrorPage";
 import CardList from "./Pages/CardList";
 import Main from "./Pages/Main";
+import Login from "./Pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/cardList",
         element: <CardList />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },

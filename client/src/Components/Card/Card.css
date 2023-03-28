@@ -1,0 +1,12 @@
+.card {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 3vh;
+}
+.card img {
+    width: 200px;
+    height: auto;
+}
