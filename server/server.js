@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const CardModel = require("./db/card.model");
+const UserModel = require("./db/user.model");
 
 const { MONGO_URL, PORT = 8080 } = process.env;
 
@@ -30,6 +31,47 @@ const createNewCard = async (card) => {
     return next(err);
   }
 };
+
+app.get("/api/users/", async (req, res) => {
+  const users = await UserModel.find().populate({
+    path: "favorites",
+    model: "Card",
+  });
+  return res.json(users);
+});
+
+app.post("/api/users/", async (req, res, next) => {
+  const user = req.body;
+  try {
+    const saved = await UserModel.create(user);
+    return res.json(saved);
+  } catch (err) {
+    return next(err);
+  }
+});
+
+app.patch("/api/users/:id", async (req, res, next) => {
+  try {
+    const user = await UserModel.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: { ...req.body } },
+      { new: true }
+    );
+    return res.json(user);
+  } catch (err) {
+    return next(err);
+  }
+});
+
+app.delete("/api/users/:id", async (req, res, next) => {
+  try {
+    const user = await UserModel.findById(req.params.id);
+    const deleted = await user.delete();
+    return res.json(deleted);
+  } catch (err) {
+    return next(err);
+  }
+});
 
 app.get("/api/cards/", async (req, res) => {
   const cards = await CardModel.find();
