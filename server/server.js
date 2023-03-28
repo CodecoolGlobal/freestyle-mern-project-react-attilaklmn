@@ -36,6 +36,29 @@ app.get("/api/cards/", async (req, res) => {
   return res.json(cards);
 });
 
+app.get("/api/cards/filter/", async (req, res) => {
+  let modelToFind = {};
+  let sortBy = "name";
+  let sortOrder = "asc";
+  for (const property in req.query) {
+    if (property === "sort") {
+      sortBy = req.query[property];
+    } else if (property === "sortOrder") {
+      sortOrder = req.query[property];
+    } else {
+      if (isNaN(req.query[property])) {
+        modelToFind[property] = new RegExp(req.query[property], "i");
+      } else {
+        modelToFind[property] = req.query[property];
+      }
+    }
+  }
+  let sortObject = {};
+  sortObject[sortBy] = sortOrder;
+  const cards = await CardModel.find(modelToFind).sort(sortObject);
+  return res.json(cards);
+});
+
 app.post("/api/cards/", (req, res, next) => {
   const cards = req.body;
 
