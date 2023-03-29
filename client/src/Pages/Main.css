@@ -1,0 +1,53 @@
+.main {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../mainbackground.webp");
+  background-size: 100vw;
+}
+
+.gabidiv {
+  position: absolute;
+  top: 25vw;
+  left: 20vw;
+  height: 50px;
+  transform-origin: 100% center;
+  animation: rotate 10s linear infinite;
+}
+
+.gabicard {
+  position: relative;
+  height: 400px;
+
+  animation: rotate 10s reverse infinite;
+}
+
+.atidiv {
+  position: absolute;
+  top: 25vw;
+  left: 50vw;
+  height: 50px;
+  transform-origin: 100% center;
+  animation: rotate 10s reverse infinite;
+}
+
+.aticard {
+  position: relative;
+  height: 400px;
+
+  animation: rotate 10s linear infinite;
+}
+
+/* @keyframes rotate {
+  100% {
+    transform: rotate(-360deg);
+  }
+} */
+@keyframes rotate {
+  from {
+    transform: rotate(-360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
