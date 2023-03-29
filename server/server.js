@@ -40,6 +40,11 @@ app.get("/api/users/", async (req, res) => {
   return res.json(users);
 });
 
+app.get("/api/users/:id", async (req, res) => {
+  const user = await UserModel.findById(req.params.id);
+  return res.json(user);
+});
+
 app.post("/api/users/register/", async (req, res, next) => {
   const { userName, password } = req.body;
   try {
@@ -62,12 +67,19 @@ app.post("/api/users/login/", async (req, res, next) => {
 
 app.patch("/api/users/:id", async (req, res, next) => {
   try {
+    const { cardId } = req.body;
+    const userToUpdate = await UserModel.findById(req.params.id);
+    if (!userToUpdate.favorites.includes(cardId)) {
+      userToUpdate.favorites.push(cardId);
+    } else {
+      userToUpdate.favorites.splice(userToUpdate.favorites.indexOf(cardId), 1);
+    }
     const user = await UserModel.findOneAndUpdate(
       { _id: req.params.id },
-      { $set: { ...req.body } },
+      { $set: userToUpdate },
       { new: true }
     );
-    return res.json(user);
+    return res.status(200).json(user);
   } catch (err) {
     return next(err);
   }
