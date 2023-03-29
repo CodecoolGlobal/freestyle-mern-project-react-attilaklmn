@@ -41,22 +41,22 @@ app.get("/api/users/", async (req, res) => {
 });
 
 app.post("/api/users/register/", async (req, res, next) => {
-  const user = req.body;
+  const { userName, password } = req.body;
   try {
-    const saved = await UserModel.create(user);
-    return res.json(saved);
+    const saved = await UserModel.create({ userName, password });
+    return res.json({ message: "saved" });
   } catch (err) {
     return next(err);
   }
 });
 
 app.post("/api/users/login/", async (req, res, next) => {
-  const user = req.body;
-  const userStored = await UserModel.find({ userName: user.name });
-  if (user.password === userName.password) {
-    return res.send("ok");
+  const { userName, password } = req.body;
+  const userStored = await UserModel.findOne({ userName: userName });
+  if (password === userStored.password) {
+    return res.status(200).json({ message: "ok", userId: userStored._id });
   } else {
-    return res.send("ng");
+    return res.status(400).json({ message: "ng" });
   }
 });
 
