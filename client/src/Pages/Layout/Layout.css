@@ -5,18 +5,30 @@
   display: flex;
   align-items: center;
   padding: 0.5rem;
-  background-color: rgb(243, 183, 132);
+  background-image: url("../../banner.jpg");
+  background-size: 100vw;
+  height: 8vw;
+  /* background-color: rgb(243, 183, 132); */
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
   justify-content: space-evenly;
+  border-bottom: 1px solid black;
 }
 
 .Layout nav button {
-  padding: 0.7rem 1.7rem;
+  font-size: 1.3vw;
+  height: 3vw;
+  width: 8vw;
+  padding: 0.2rem 0.2rem;
   font-weight: bold;
+  border-radius: 5px;
+  background-color: rgb(115, 170, 207, 0.5);
+  justify-content: center;
+  align-items: center;
 }
 
 .Layout nav button:hover {
   box-shadow: 0px 0px 5px rgb(255, 255, 255);
+  background-color: rgb(115, 170, 207, 1);
 }
