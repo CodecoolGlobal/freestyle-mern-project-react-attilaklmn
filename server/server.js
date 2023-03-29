@@ -51,7 +51,7 @@ app.post("/api/users/register/", async (req, res, next) => {
   if (checkIfUserExists) {
     return res
       .status(400)
-      .json(`${userName} was taken! Please chose different username!`);
+      .json(`${userName} was taken! Please choose different username!`);
   } else {
     try {
       const saved = await UserModel.create({ userName, password });

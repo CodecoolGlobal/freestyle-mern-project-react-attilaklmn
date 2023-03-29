@@ -19,11 +19,11 @@
 }
 
 .Layout nav button {
+  font-family: "Bevan";
   font-size: 1.3vw;
   height: 3.2vw;
-  width: 8vw;
+  width: 10vw;
   padding: 0.2rem 0.2rem;
-  font-weight: bold;
   border-radius: 10px;
   background-color: rgb(115, 170, 207, 0.4);
   justify-content: center;

@@ -38,10 +38,10 @@ const fetchLogin = (userName, password) => {
       }
     })
     .then((res) => {
-      console.log("siker");
       localStorage.setItem("isLoggedIn", true);
       localStorage.setItem("userLoggedIn", res.userId);
     })
+    .then(() => window.location.reload(true))
     .catch((error) => {
       alert(error.message);
     });
@@ -62,14 +62,12 @@ const Login = () => {
   };
 
   const handleLogin = async () => {
-    await fetchLogin(userName, password).then(() =>
-      window.location.reload(true)
-    );
+    await fetchLogin(userName, password);
   };
 
   return (
     <div className="main">
-      <div className="contento login-background">
+      <div className="content login-background">
         <div className="login-text">Login/Register</div>
         <label className="input-label" htmlFor="userName">
           Username:
