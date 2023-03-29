@@ -5,6 +5,97 @@
   background-size: 100vw;
 }
 
+.bogrediv {
+  animation: 20s ease-out 0s 1 bogremove;
+  animation-iteration-count: infinite;
+  position: absolute;
+}
+
+@keyframes bogremove {
+  0% {
+    transform: translateX(-50vw);
+  }
+
+  40% {
+    transform: translateX(40vw);
+  }
+
+  60% {
+    transform: translateX(50vw);
+  }
+
+  100% {
+    transform: translateX(150vw);
+  }
+}
+
+@keyframes codecoolmove {
+  0% {
+    transform: translateX(-20vw);
+  }
+
+  40% {
+    transform: translateX(70vw);
+  }
+
+  60% {
+    transform: translateX(80vw);
+  }
+
+  100% {
+    transform: translateX(180vw);
+  }
+}
+
+.codecooldiv {
+  left: -30vw;
+  top: 50vh;
+  animation: 20s ease-out 5s 1 codecoolmove;
+  animation-iteration-count: infinite;
+  position: absolute;
+}
+
+@keyframes cutecatmove {
+  0% {
+    transform: translateX(10vw);
+  }
+
+  40% {
+    transform: translateX(100vw);
+  }
+
+  60% {
+    transform: translateX(110vw);
+  }
+
+  100% {
+    transform: translateX(210vw);
+  }
+}
+
+.cutecatdiv {
+  left: -60vw;
+  top: 35vh;
+  animation: 20s ease-out 10s 1 cutecatmove;
+  animation-iteration-count: infinite;
+  position: absolute;
+}
+
+.bogrecard {
+  position: relative;
+  height: 400px;
+}
+
+.codecoolcard {
+  position: relative;
+  height: 400px;
+}
+
+.cutecatcard {
+  position: relative;
+  height: 400px;
+}
+
 .gabidiv {
   position: absolute;
   top: 25vw;
