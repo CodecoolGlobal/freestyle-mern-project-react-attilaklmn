@@ -25,7 +25,7 @@ const fetchLogin = (userName, password) => {
     })
     .then((res) => {
       console.log("siker");
-      localStorage.setItem("isLoggedIn", 1);
+      localStorage.setItem("isLoggedIn", true);
       localStorage.setItem("userLoggedIn", res.userId);
     })
     .catch((error) => {
@@ -42,34 +42,34 @@ const Login = () => {
   };
 
   const handleLogin = async () => {
-    await fetchLogin(userName, password);
+    await fetchLogin(userName, password).then(() =>
+      window.location.reload(true)
+    );
   };
 
   return (
     <div className="content">
       Login
-      <form>
-        <input
-          type="text"
-          onChange={(e) => {
-            setUserName(e.target.value);
-          }}
-          value={userName}
-        ></input>
-        <input
-          type="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          value={password}
-        ></input>
-        <button type="button" onClick={handleRegister}>
-          Register!
-        </button>
-        <button type="submit" onClick={handleLogin}>
-          Login!
-        </button>
-      </form>
+      <input
+        type="text"
+        onChange={(e) => {
+          setUserName(e.target.value);
+        }}
+        value={userName}
+      ></input>
+      <input
+        type="password"
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
+        value={password}
+      ></input>
+      <button type="button" onClick={handleRegister}>
+        Register!
+      </button>
+      <button type="button" onClick={handleLogin}>
+        Login!
+      </button>
     </div>
   );
 };

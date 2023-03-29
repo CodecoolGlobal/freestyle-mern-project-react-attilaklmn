@@ -33,25 +33,25 @@ const Layout = () => {
               </Link>
             </li>
           )}
-          {!isLoggedIn && (
-            <li>
-              <Link to="/login">
-                <button type="button">Login</button>
-              </Link>
-            </li>
-          )}
           {isLoggedIn && (
             <li>
               <button
                 type="button"
                 onClick={() => {
                   setIsLoggedIn(false);
-                  localStorage.setItem("isLoggedIn", false);
+                  localStorage.removeItem("isLoggedIn");
                   localStorage.setItem("userLoggedIn", "");
                 }}
               >
                 Logout
               </button>
+            </li>
+          )}
+          {!isLoggedIn && (
+            <li>
+              <Link to="/login">
+                <button type="button">Login</button>
+              </Link>
             </li>
           )}
         </ul>
