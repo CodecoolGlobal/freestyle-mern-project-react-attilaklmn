@@ -3,3 +3,18 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.filters {
+    width: 90%;
+    padding: 3rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(221, 195, 112);
+    border-radius: 1rem;
+}
+
+.loading {
+    padding: 20vh;
+}
