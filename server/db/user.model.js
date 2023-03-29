@@ -7,7 +7,7 @@ const UserSchema = new Schema({
   favorites: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: "cards",
-    default: [""],
+    default: [],
   },
 });
 

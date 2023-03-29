@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import "./Layout.css";
 
 const Layout = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
   return (
     <div className="Layout">
       <nav className="nav">
         <ul>
-        <li>
+          <li>
             <Link to="/">
               <button type="button">Homepage</button>
             </Link>
