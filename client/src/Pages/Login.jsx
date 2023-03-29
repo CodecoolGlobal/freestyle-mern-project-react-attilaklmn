@@ -15,13 +15,22 @@ const fetchLogin = (userName, password) => {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ userName, password }),
-  }).then((res) => {
-    if (res.status === 200) {
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        throw new Error({ message: "User or password lofasz" });
+      }
+    })
+    .then((res) => {
       console.log("siker");
-    } else {
-      alert("User or password lofasz");
-    }
-  });
+      localStorage.setItem("isLoggedIn", 1);
+      localStorage.setItem("userLoggedIn", res.userId);
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
 };
 
 const Login = () => {
@@ -39,26 +48,28 @@ const Login = () => {
   return (
     <div className="content">
       Login
-      <input
-        type="text"
-        onChange={(e) => {
-          setUserName(e.target.value);
-        }}
-        value={userName}
-      ></input>
-      <input
-        type="text"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-        value={password}
-      ></input>
-      <button type="button" onClick={handleRegister}>
-        Register!
-      </button>
-      <button type="button" onClick={handleLogin}>
-        Login!
-      </button>
+      <form>
+        <input
+          type="text"
+          onChange={(e) => {
+            setUserName(e.target.value);
+          }}
+          value={userName}
+        ></input>
+        <input
+          type="password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          value={password}
+        ></input>
+        <button type="button" onClick={handleRegister}>
+          Register!
+        </button>
+        <button type="submit" onClick={handleLogin}>
+          Login!
+        </button>
+      </form>
     </div>
   );
 };

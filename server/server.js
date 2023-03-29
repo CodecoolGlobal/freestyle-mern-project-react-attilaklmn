@@ -54,7 +54,7 @@ app.post("/api/users/login/", async (req, res, next) => {
   const { userName, password } = req.body;
   const userStored = await UserModel.findOne({ userName: userName });
   if (password === userStored.password) {
-    return res.status(200).json({ message: "ok" });
+    return res.status(200).json({ message: "ok", userId: userStored._id });
   } else {
     return res.status(400).json({ message: "ng" });
   }
