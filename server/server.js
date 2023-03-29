@@ -47,22 +47,31 @@ app.get("/api/users/:id", async (req, res) => {
 
 app.post("/api/users/register/", async (req, res, next) => {
   const { userName, password } = req.body;
-  try {
-    const saved = await UserModel.create({ userName, password });
-    return res.json({ message: "saved" });
-  } catch (err) {
-    return next(err);
+  const checkIfUserExists = await UserModel.findOne({ userName: userName });
+  if (checkIfUserExists) {
+    return res
+      .status(400)
+      .json(`${userName} was taken! Please chose different username!`);
+  } else {
+    try {
+      const saved = await UserModel.create({ userName, password });
+      return res.status(200).json(`${userName} registered!`);
+    } catch (err) {
+      return next(err);
+    }
   }
 });
 
 app.post("/api/users/login/", async (req, res, next) => {
   const { userName, password } = req.body;
   const userStored = await UserModel.findOne({ userName: userName });
-  if (password === userStored.password) {
-    return res.status(200).json({ message: "ok", userId: userStored._id });
-  } else {
-    return res.status(400).json({ message: "ng" });
-  }
+  if (userStored) {
+    if (password === userStored.password) {
+      return res.status(200).json({ message: "ok", userId: userStored._id });
+    } else {
+      return res.status(400).json("Wrong Password!");
+    }
+  } else res.status(400).json("Wrong Username!");
 });
 
 app.patch("/api/users/:id", async (req, res, next) => {

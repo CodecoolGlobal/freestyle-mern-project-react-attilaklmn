@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Login.css";
 
 const fetchRegister = (userName, password) => {
   return fetch("http://localhost:8080/api/users/register/", {
@@ -6,8 +7,19 @@ const fetchRegister = (userName, password) => {
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ userName, password }),
   })
-    .then((res) => res.json())
-    .then((res) => console.log(res.message));
+    .then((res) => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        return res.json().then((message) => {
+          throw new Error(message);
+        });
+      }
+    })
+    .then((message) => alert(message))
+    .catch((error) => {
+      alert(error.message);
+    });
 };
 
 const fetchLogin = (userName, password) => {
@@ -20,7 +32,9 @@ const fetchLogin = (userName, password) => {
       if (res.status === 200) {
         return res.json();
       } else {
-        throw new Error({ message: "User or password lofasz" });
+        return res.json().then((message) => {
+          throw new Error(message);
+        });
       }
     })
     .then((res) => {
@@ -38,7 +52,13 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const handleRegister = async () => {
-    await fetchRegister(userName, password);
+    if (userName.length < 4) {
+      alert("Username must be at least 4 letters long!");
+    } else if (password.length < 4) {
+      alert("Password must be at least 4 letters long!");
+    } else {
+      await fetchRegister(userName, password);
+    }
   };
 
   const handleLogin = async () => {
@@ -48,28 +68,46 @@ const Login = () => {
   };
 
   return (
-    <div className="content">
-      Login
-      <input
-        type="text"
-        onChange={(e) => {
-          setUserName(e.target.value);
-        }}
-        value={userName}
-      ></input>
-      <input
-        type="password"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-        value={password}
-      ></input>
-      <button type="button" onClick={handleRegister}>
-        Register!
-      </button>
-      <button type="button" onClick={handleLogin}>
-        Login!
-      </button>
+    <div className="main">
+      <div className="contento login-background">
+        <div className="login-text">Login/Register</div>
+        <label className="input-label" htmlFor="userName">
+          Username:
+        </label>
+        <input
+          className="login-input"
+          type="text"
+          name="userName"
+          onChange={(e) => {
+            setUserName(e.target.value);
+          }}
+          value={userName}
+        ></input>
+        <label className="input-label" htmlFor="password">
+          Password:
+        </label>
+        <input
+          className="login-input"
+          type="password"
+          name="password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          value={password}
+        ></input>
+        <div className="login-button-container">
+          <button className="login-button" type="button" onClick={handleLogin}>
+            Login!
+          </button>
+          <button
+            className="login-button"
+            type="button"
+            onClick={handleRegister}
+          >
+            Register!
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

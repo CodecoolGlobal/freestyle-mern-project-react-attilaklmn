@@ -1,20 +1,19 @@
-import { useEffect } from "react";
+import gabicard from "../gabicard.png";
+import aticard from "../aticard.png";
 
-const fetchCardList = () => {
-  return fetch(
-    "http://localhost:8080/api/cards/filter/?health=4&sort=artistName&sortOrder=desc"
-  ).then((res) => res.json());
-};
-
-const logCurrent = async () => {
-  console.log(await fetchCardList());
-};
+import "./Main.css";
 
 const Main = () => {
-  useEffect(() => {
-    logCurrent();
-  }, []);
-  return <div>Main</div>;
+  return (
+    <div className="main">
+      <div className="gabidiv">
+        <img className="gabicard" alt="gabi" src={gabicard}></img>
+      </div>
+      <div className="atidiv">
+        <img className="aticard" alt="ati" src={aticard}></img>
+      </div>
+    </div>
+  );
 };
 
 export default Main;
