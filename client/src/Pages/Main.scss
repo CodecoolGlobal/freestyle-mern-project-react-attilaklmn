@@ -1,3 +1,68 @@
+@import url(https://fonts.googleapis.com/css2?family=Pacifico&display=swap);
+
+@import url(https://fonts.googleapis.com/css2?family=Condiment&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Lakki+Reddy&display=swap);
+
+.maine {
+  display: flex;
+  justify-content: center;
+  z-index: -50px;
+}
+
+.welcome {
+  // font: 7vw/22vh "Finger Paint";
+  top: 23vh;
+  font-size: 7rem;
+  font-family: "Lakki Reddy";
+  position: absolute;
+  // color: rgb(236, 147, 39);
+  color: rgb(171, 157, 37);
+  align-items: center;
+}
+
+span {
+  display: inline-block;
+  letter-spacing: 1vw;
+  font-weight: bold;
+  text-shadow: 5px 5px 5px rgb(166, 55, 7);
+  /* text-shadow: 0 0 0 whitesmoke; */
+  animation: smoky 5s 3s both;
+}
+
+span:nth-child(even) {
+  animation-name: smoky-mirror;
+}
+
+@keyframes smoky {
+  60% {
+    text-shadow: 0 0 40px rgb(166, 55, 7);
+  }
+  to {
+    transform: translate3d(15rem, -8rem, 0) rotate(-40deg) skewX(70deg)
+      scale(1.5);
+    text-shadow: 0 0 20px rgb(166, 55, 7);
+    opacity: 0;
+  }
+}
+
+@keyframes smoky-mirror {
+  60% {
+    text-shadow: 0 0 40px rgb(166, 55, 7);
+  }
+  to {
+    transform: translate3d(18rem, -8rem, 0) rotate(-40deg) skewX(-70deg)
+      scale(2);
+    text-shadow: 0 0 20px rgb(166, 55, 7);
+    opacity: 0;
+  }
+}
+
+@for $item from 1 through 21 {
+  span:nth-of-type(#{$item}) {
+    animation-delay: #{(3 + ($item/10))}s;
+  }
+}
+
 .bogrediv {
   left: -60vw;
   top: 30vh;

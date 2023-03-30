@@ -6,11 +6,47 @@ import cutecatcard from "../cutecatcard.png";
 import goldencommoncard from "../goldencommon.png";
 import zsombicard from "../zsombicard.png";
 
-import "./Main.css";
+import { useEffect, useState } from "react";
+
+import "./Main.scss";
+
+const fetchUserName = (id) => {
+  return fetch(`http://localhost:8080/api/users/${id}`).then((res) =>
+    res.json()
+  );
+};
 
 const Main = () => {
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem("isLoggedIn")) {
+      fetchUserName(localStorage.getItem("userLoggedIn")).then((user) =>
+        setUserName(user.userName)
+      );
+    }
+  }, []);
+  /* <div className="welcome">Welcome {userName} !</div> */
   return (
-    <div className="main">
+    <div className="maine">
+      {userName && (
+        <div className="welcome">
+          <div>
+            <span>W</span>
+            <span>e</span>
+            <span>l</span>
+            <span>c</span>
+            <span>o</span>
+            <span>m</span>
+            <span>e</span>
+            <span>&nbsp;</span>
+            {userName.split("").map((letter, index) => {
+              return <span key={index}>{letter}</span>;
+            })}
+          </div>
+        </div>
+      )}
+
       <div className="gabidiv">
         <img className="gabicard" alt="gabi" src={gabicard}></img>
       </div>

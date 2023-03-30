@@ -47,7 +47,7 @@ app.get("/api/users/:id", async (req, res) => {
 });
 
 app.get("/api/users/favorites/:id", async (req, res) => {
-  console.log(req.params.id)
+  console.log(req.params.id);
   const user = await UserModel.findById(req.params.id).populate({
     path: "favorites",
     model: "Card",
@@ -132,7 +132,7 @@ app.get("/api/cards/filter/", async (req, res) => {
       if (isNaN(req.query[property])) {
         modelToFind[property] = new RegExp(req.query[property], "i");
       } else {
-        modelToFind[property] = req.query[property]
+        modelToFind[property] = req.query[property];
       }
     }
   }
