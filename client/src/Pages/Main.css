@@ -94,26 +94,51 @@
 .bogrecard {
   position: relative;
   height: 60vh;
+  transition: transform 0.25s ease-out;
+}
+
+.bogrecard:hover {
+  transform: scale(1.2);
 }
 
 .codecoolcard {
   position: relative;
   height: 60vh;
+  transition: transform 0.25s ease-out;
+}
+
+.codecoolcard:hover {
+  transform: scale(1.2);
 }
 
 .cutecatcard {
   position: relative;
   height: 60vh;
+  transition: transform 0.25s ease-out;
+}
+
+.cutecatcard:hover {
+  transform: scale(1.2);
 }
 
 .goldencommoncard {
   position: relative;
   height: 60vh;
+  transition: transform 0.25s ease-out;
+}
+
+.goldencommoncard:hover {
+  transform: scale(1.2);
 }
 
 .zsombicard {
   position: relative;
   height: 60vh;
+  transition: transform 0.25s ease-out;
+}
+
+.zsombicard:hover {
+  transform: scale(1.2);
 }
 
 .gabidiv {
@@ -131,8 +156,13 @@
 .gabicard {
   position: relative;
   height: 60vh;
+  transition: transform 0.25s ease-out;
 
   /*   animation: rotate 10s reverse infinite; */
+}
+
+.gabicard:hover {
+  transform: scale(1.2);
 }
 
 @keyframes gabimove {
@@ -169,8 +199,12 @@
 .aticard {
   position: relative;
   height: 60vh;
+  transition: transform 0.25s ease-out;
 
   /*  animation: rotate 10s linear infinite; */
+}
+.aticard:hover {
+  transform: scale(1.2);
 }
 
 @keyframes atimove {
