@@ -3,6 +3,8 @@ import aticard from "../aticard.png";
 import bogrecard from "../bogrecard.png";
 import codecoolcard from "../codecoolcard.png";
 import cutecatcard from "../cutecatcard.png";
+import goldencommoncard from "../goldencommon.png";
+import zsombicard from "../zsombicard.png";
 
 import "./Main.css";
 
@@ -27,6 +29,16 @@ const Main = () => {
       </div>
       <div className="cutecatdiv">
         <img className="cutecatcard" alt="cutecatcard" src={cutecatcard}></img>
+      </div>
+      <div className="goldencommondiv">
+        <img
+          className="goldencommoncard"
+          alt="goldencommoncard"
+          src={goldencommoncard}
+        ></img>
+      </div>
+      <div className="zsombidiv">
+        <img className="zsombicard" alt="zsombicard" src={zsombicard}></img>
       </div>
     </div>
   );
