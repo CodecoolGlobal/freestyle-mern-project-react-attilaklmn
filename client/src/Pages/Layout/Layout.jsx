@@ -35,16 +35,18 @@ const Layout = () => {
           )}
           {isLoggedIn && (
             <li>
-              <button
-                type="button"
-                onClick={() => {
-                  setIsLoggedIn(false);
-                  localStorage.removeItem("isLoggedIn");
-                  localStorage.setItem("userLoggedIn", "");
-                }}
-              >
-                Logout
-              </button>
+              <Link to="/">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsLoggedIn(false);
+                    localStorage.removeItem("isLoggedIn");
+                    localStorage.setItem("userLoggedIn", "");
+                  }}
+                >
+                  Logout
+                </button>
+              </Link>
             </li>
           )}
           {!isLoggedIn && (
