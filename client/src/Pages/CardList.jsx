@@ -81,33 +81,35 @@ const CardList = () => {
   }, [currentPage, isLoading]);
 
   return (
-    <div className="content">
-      {!isLoading && <div className="filters">Filters.</div>}
-      <div className="cardlist">
-        {!isLoading ? (
-          currentTableData.map((card, index) => {
-            return (
-              <Card
-                key={index}
-                card={card}
-                onFavoriteClick={handleAddToFavorites}
-                currentUser={currentUser}
-              ></Card>
-            );
-          })
-        ) : (
-          <div className="loading">Loading...</div>
+    <div className="main">
+      <div className="content">
+        {!isLoading && <div className="filters">Filters.</div>}
+        <div className="cardlist">
+          {!isLoading ? (
+            currentTableData.map((card, index) => {
+              return (
+                <Card
+                  key={index}
+                  card={card}
+                  onFavoriteClick={handleAddToFavorites}
+                  currentUser={currentUser}
+                ></Card>
+              );
+            })
+          ) : (
+            <div className="loading">Loading...</div>
+          )}
+        </div>
+        {!isLoading && (
+          <Pagination
+            className="pagination-bar"
+            currentPage={currentPage}
+            totalCount={cardList.length}
+            pageSize={PageSize}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
         )}
       </div>
-      {!isLoading && (
-        <Pagination
-          className="pagination-bar"
-          currentPage={currentPage}
-          totalCount={cardList.length}
-          pageSize={PageSize}
-          onPageChange={(page) => setCurrentPage(page)}
-        />
-      )}
     </div>
   );
 };

@@ -1,0 +1,188 @@
+.main {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../mainbackground.webp");
+  background-size: 100vw;
+}
+
+.bogrediv {
+  left: -60vw;
+  animation: 20s ease-in-out 4s 1 bogremove;
+  animation-iteration-count: infinite;
+  position: absolute;
+}
+
+@keyframes bogremove {
+  0% {
+    transform: translateX(10vw);
+  }
+
+  40% {
+    transform: translateX(100vw);
+  }
+
+  60% {
+    transform: translateX(110vw);
+  }
+
+  100% {
+    transform: translateX(210vw);
+  }
+}
+
+@keyframes codecoolmove {
+  0% {
+    transform: translateX(10vw);
+  }
+
+  40% {
+    transform: translateX(100vw);
+  }
+
+  60% {
+    transform: translateX(110vw);
+  }
+
+  100% {
+    transform: translateX(210vw);
+  }
+}
+
+.codecooldiv {
+  left: -60vw;
+  top: 50vh;
+  animation: 20s ease-in-out 7s 1 codecoolmove;
+  animation-iteration-count: infinite;
+  position: absolute;
+}
+
+@keyframes cutecatmove {
+  0% {
+    transform: translateX(10vw);
+  }
+
+  40% {
+    transform: translateX(100vw);
+  }
+
+  60% {
+    transform: translateX(110vw);
+  }
+
+  100% {
+    transform: translateX(210vw);
+  }
+}
+
+.cutecatdiv {
+  left: -60vw;
+  top: 35vh;
+  animation: 20s ease-in-out 16s 1 cutecatmove;
+  animation-iteration-count: infinite;
+  position: absolute;
+}
+
+.bogrecard {
+  position: relative;
+  height: 400px;
+}
+
+.codecoolcard {
+  position: relative;
+  height: 400px;
+}
+
+.cutecatcard {
+  position: relative;
+  height: 400px;
+}
+
+.gabidiv {
+  position: absolute;
+  /*   top: 25vw;
+  left: 20vw; */
+  left: -60vw;
+  top: 15vh;
+  animation: 20s ease-in-out 10s 1 gabimove;
+  animation-iteration-count: infinite;
+  /* transform-origin: 100% center;
+  animation: rotate 10s linear infinite; */
+}
+
+.gabicard {
+  position: relative;
+  height: 400px;
+
+  /*   animation: rotate 10s reverse infinite; */
+}
+
+@keyframes gabimove {
+  0% {
+    transform: translateX(10vw);
+  }
+
+  40% {
+    transform: translateX(100vw);
+  }
+
+  60% {
+    transform: translateX(110vw);
+  }
+
+  100% {
+    transform: translateX(210vw);
+  }
+}
+
+.atidiv {
+  position: absolute;
+  /* top: 25vw;
+  left: 50vw;
+  height: 50px;
+  transform-origin: 100% center;
+  animation: rotate 10s reverse infinite; */
+  left: -60vw;
+  top: 45vh;
+  animation: 20s ease-in-out 0s 1 atimove;
+  animation-iteration-count: infinite;
+}
+
+.aticard {
+  position: relative;
+  height: 400px;
+
+  /*  animation: rotate 10s linear infinite; */
+}
+
+@keyframes atimove {
+  0% {
+    transform: translateX(10vw);
+  }
+
+  40% {
+    transform: translateX(100vw);
+  }
+
+  60% {
+    transform: translateX(110vw);
+  }
+
+  100% {
+    transform: translateX(210vw);
+  }
+}
+
+/* @keyframes rotate {
+  100% {
+    transform: rotate(-360deg);
+  }
+} */
+@keyframes rotate {
+  from {
+    transform: rotate(-360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}

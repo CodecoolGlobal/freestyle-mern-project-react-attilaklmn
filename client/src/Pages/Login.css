@@ -1,0 +1,70 @@
+.login-background {
+  /* background-image: url("../hearthstone-art.avif"); */
+  height: 80vh;
+  background-image: url("../welcomenologo.png");
+  background-size: 100%;
+
+  background-position-y: top;
+  background-position-x: center;
+  z-index: -500;
+}
+
+.login-text {
+  font-size: 7vh;
+  color: rgb(0, 0, 0);
+  margin-top: 8vw;
+  margin-bottom: 5vw;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(115, 170, 207, 0.3);
+}
+
+.login-button-container {
+  margin-bottom: 3vw;
+}
+
+.login-button-container .login-button {
+  font-family: inherit;
+  font-size: 1.3vw;
+  height: 3.2vw;
+  width: 8vw;
+  padding: 0.2rem 0.2rem;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: rgb(115, 170, 207, 1);
+  justify-content: center;
+  align-items: center;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-bottom: 5vw;
+}
+
+.login-button-container .login-button:hover {
+  box-shadow: 0px 0px 5px rgb(255, 255, 255);
+  background-color: rgb(31, 82, 116);
+  cursor: pointer;
+}
+
+.input-label {
+  font-size: 1.8vw;
+  margin-bottom: 1vw;
+  color: rgb(5, 32, 50);
+  font-size: 4vh;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(115, 170, 207, 0.3);
+}
+
+.login-input {
+  font-family: inherit;
+  font-size: 2.5vw;
+  margin-bottom: 1.5vw;
+  border-radius: 10px;
+  text-align: center;
+  background-color: rgb(205, 226, 240);
+  opacity: 70%;
+}
+
+.login-input:hover {
+  opacity: 100%;
+}
