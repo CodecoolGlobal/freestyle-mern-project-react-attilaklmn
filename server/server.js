@@ -46,6 +46,15 @@ app.get("/api/users/:id", async (req, res) => {
   return res.json(user);
 });
 
+app.get("/api/users/favorites/:id", async (req, res) => {
+  console.log(req.params.id)
+  const user = await UserModel.findById(req.params.id).populate({
+    path: "favorites",
+    model: "Card",
+  });
+  return res.json(user);
+});
+
 app.post("/api/users/register/", async (req, res, next) => {
   const { userName, password } = req.body;
   const checkIfUserExists = await UserModel.findOne({ userName: userName });
