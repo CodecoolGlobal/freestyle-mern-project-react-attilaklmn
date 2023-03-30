@@ -8,6 +8,7 @@ import ErrorPage from "./Pages/ErrorPage";
 import CardList from "./Pages/CardList";
 import Main from "./Pages/Main";
 import Login from "./Pages/Login";
+import Favorites from "./Pages/Favourites"
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+      {
+        path: "/favorites",
+        element: <Favorites />,
+      }
     ],
   },
 ]);
