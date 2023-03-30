@@ -3,7 +3,7 @@ import "./CardList.css";
 import Card from "../Components/Card";
 import Pagination from "../Components/Card/Pagination";
 
-let PageSize = 12;
+let PageSize = 16;
 
 const fetchCurrentUser = (userId) => {
   return fetch(`http://localhost:8080/api/users/${userId}`).then((res) =>

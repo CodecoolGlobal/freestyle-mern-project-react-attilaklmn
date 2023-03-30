@@ -5,6 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("./mainbackground.webp");
+  background-size: 100vw;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 code {

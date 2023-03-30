@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const fetchRegister = (userName, password) => {
@@ -22,7 +23,7 @@ const fetchRegister = (userName, password) => {
     });
 };
 
-const fetchLogin = (userName, password) => {
+const fetchLogin = (userName, password, navigate) => {
   return fetch("http://localhost:8080/api/users/login/", {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -41,13 +42,17 @@ const fetchLogin = (userName, password) => {
       localStorage.setItem("isLoggedIn", true);
       localStorage.setItem("userLoggedIn", res.userId);
     })
-    .then(() => window.location.reload(true))
+    .then(() => {
+      navigate(`/`);
+      window.location.reload(true);
+    })
     .catch((error) => {
       alert(error.message);
     });
 };
 
 const Login = () => {
+  const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -62,7 +67,7 @@ const Login = () => {
   };
 
   const handleLogin = async () => {
-    await fetchLogin(userName, password);
+    await fetchLogin(userName, password, navigate);
   };
 
   return (
