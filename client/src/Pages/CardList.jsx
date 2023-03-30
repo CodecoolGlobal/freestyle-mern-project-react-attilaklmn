@@ -4,7 +4,6 @@ import Card from "../Components/Card";
 import Pagination from "../Components/Card/Pagination";
 import Filter from "../Components/Card/Filter";
 
-
 let PageSize = 10;
 
 const fetchCurrentUser = (userId) => {
@@ -86,7 +85,7 @@ const CardList = () => {
     event.preventDefault();
 
     const name = event.target.name.value;
-    const manaCost = event.target.manaCost.value
+    const manaCost = event.target.manaCost.value;
     const attack = event.target.attack.value;
     const health = event.target.health.value;
     const type = event.target.type.value;
@@ -96,35 +95,37 @@ const CardList = () => {
 
     let url = "?";
     if (manaCost !== "") {
-      url += `manaCost=${manaCost}&`
+      url += `manaCost=${manaCost}&`;
     }
     if (attack !== "") {
-      url += `attack=${attack}&`
+      url += `attack=${attack}&`;
     }
     if (health !== "") {
-      url += `health=${health}&`
+      url += `health=${health}&`;
     }
     if (type !== "") {
-      url += `cardTypeId=${type}&`
+      url += `cardTypeId=${type}&`;
     }
     if (rarity !== "") {
-      url += `rarityId=${rarity}&`
+      url += `rarityId=${rarity}&`;
     }
     if (cardClass !== "") {
-      url += `classId=${cardClass}&`
+      url += `classId=${cardClass}&`;
     }
     if (cardSetId !== "") {
-      url += `cardSetId=${cardSetId}&`
+      url += `cardSetId=${cardSetId}&`;
     }
     if (name !== "") {
-      url += `name=${name}&`
+      url += `name=${name}&`;
     }
-    setIsLoading(true)
-    fetch(`http://localhost:8080/api/cards/filter/${url}`).then(res => res.json()).then(cards => {
-      setCardList(cards);
-      setIsLoading(false);
-    })
-  }
+    setIsLoading(true);
+    fetch(`http://localhost:8080/api/cards/filter/${url}`)
+      .then((res) => res.json())
+      .then((cards) => {
+        setCardList(cards);
+        setIsLoading(false);
+      });
+  };
 
   return (
     <div className="main">

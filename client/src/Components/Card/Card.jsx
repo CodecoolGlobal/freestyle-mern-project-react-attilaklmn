@@ -12,10 +12,11 @@ const Card = (props) => {
   return (
     <div className="card">
       <img src={props.card.image} alt="" />
-      {props.card.name}
+      <div className="card-name">{props.card.name}</div>
       {isLoggedIn && !props.currentUser.favorites.includes(props.card._id) && (
         <button
           type="button"
+          className="favorite-button"
           onClick={() => props.onFavoriteClick(props.card._id)}
         >
           Add to favorites!
@@ -24,6 +25,7 @@ const Card = (props) => {
       {isLoggedIn && props.currentUser.favorites.includes(props.card._id) && (
         <button
           type="button"
+          className="favorite-button"
           onClick={() => props.onFavoriteClick(props.card._id)}
         >
           Remove from favorites!
