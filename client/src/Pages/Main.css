@@ -1,13 +1,7 @@
-.main {
-  height: 100vh;
-  width: 100vw;
-  background-image: url("../mainbackground.webp");
-  background-size: 100vw;
-}
-
 .bogrediv {
   left: -60vw;
-  animation: 20s ease-in-out 4s 1 bogremove;
+  top: 30vh;
+  animation: 28s linear 4s 1 allmove;
   animation-iteration-count: infinite;
   position: absolute;
 }
@@ -50,8 +44,23 @@
 
 .codecooldiv {
   left: -60vw;
-  top: 50vh;
-  animation: 20s ease-in-out 7s 1 codecoolmove;
+  top: 30vh;
+  animation: 28s linear 20s 1 allmove;
+  animation-iteration-count: infinite;
+  position: absolute;
+}
+.zsombidiv {
+  left: -60vw;
+  top: 30vh;
+  animation: 28s linear 24s 1 allmove;
+  animation-iteration-count: infinite;
+  position: absolute;
+}
+
+.goldencommondiv {
+  left: -60vw;
+  top: 30vh;
+  animation: 28s linear 8s 1 allmove;
   animation-iteration-count: infinite;
   position: absolute;
 }
@@ -76,25 +85,35 @@
 
 .cutecatdiv {
   left: -60vw;
-  top: 35vh;
-  animation: 20s ease-in-out 16s 1 cutecatmove;
+  top: 30vh;
+  animation: 28s linear 16s 1 allmove;
   animation-iteration-count: infinite;
   position: absolute;
 }
 
 .bogrecard {
   position: relative;
-  height: 400px;
+  height: 60vh;
 }
 
 .codecoolcard {
   position: relative;
-  height: 400px;
+  height: 60vh;
 }
 
 .cutecatcard {
   position: relative;
-  height: 400px;
+  height: 60vh;
+}
+
+.goldencommoncard {
+  position: relative;
+  height: 60vh;
+}
+
+.zsombicard {
+  position: relative;
+  height: 60vh;
 }
 
 .gabidiv {
@@ -102,8 +121,8 @@
   /*   top: 25vw;
   left: 20vw; */
   left: -60vw;
-  top: 15vh;
-  animation: 20s ease-in-out 10s 1 gabimove;
+  top: 30vh;
+  animation: 28s linear 12s 1 allmove;
   animation-iteration-count: infinite;
   /* transform-origin: 100% center;
   animation: rotate 10s linear infinite; */
@@ -111,7 +130,7 @@
 
 .gabicard {
   position: relative;
-  height: 400px;
+  height: 60vh;
 
   /*   animation: rotate 10s reverse infinite; */
 }
@@ -142,14 +161,14 @@
   transform-origin: 100% center;
   animation: rotate 10s reverse infinite; */
   left: -60vw;
-  top: 45vh;
-  animation: 20s ease-in-out 0s 1 atimove;
+  top: 30vh;
+  animation: 28s linear 0s 1 allmove;
   animation-iteration-count: infinite;
 }
 
 .aticard {
   position: relative;
-  height: 400px;
+  height: 60vh;
 
   /*  animation: rotate 10s linear infinite; */
 }
@@ -167,6 +186,15 @@
     transform: translateX(110vw);
   }
 
+  100% {
+    transform: translateX(210vw);
+  }
+}
+
+@keyframes allmove {
+  0% {
+    transform: translateX(10vw);
+  }
   100% {
     transform: translateX(210vw);
   }
