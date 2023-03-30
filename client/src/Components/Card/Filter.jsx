@@ -59,9 +59,11 @@ const Filter = (props) => {
           </select>
         </div>
         <div className="filter-button-container">
-          <button className="filter-button" type="submit">
-            Filter
-          </button>
+          <div className="filter-button-outer">
+            <button className="filter-button" type="submit">
+              Filter
+            </button>
+          </div>
         </div>
         <div className="input-column">
           <select className="filter-input-field" type="text" name="manaCost">
