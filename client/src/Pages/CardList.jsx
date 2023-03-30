@@ -84,7 +84,8 @@ const CardList = () => {
 
   const handleFilter = (event) => {
     event.preventDefault();
-    //const {attack, health, manaCost, classId, cardSetId} = event.;
+
+    const name = event.target.name.value;
     const manaCost = event.target.manaCost.value
     const attack = event.target.attack.value;
     const health = event.target.health.value;
@@ -92,7 +93,6 @@ const CardList = () => {
     const rarity = event.target.rarity.value;
     const cardClass = event.target.cardClass.value;
     const cardSetId = event.target.cardSetId.value;
-    const set = event.target.set.value;
 
     let url = "?";
     if (manaCost !== "") {
@@ -116,13 +116,9 @@ const CardList = () => {
     if (cardSetId !== "") {
       url += `cardSetId=${cardSetId}&`
     }
-
-    
-
-
-
-
-
+    if (name !== "") {
+      url += `name=${name}&`
+    }
     setIsLoading(true)
     fetch(`http://localhost:8080/api/cards/filter/${url}`).then(res => res.json()).then(cards => {
       setCardList(cards);

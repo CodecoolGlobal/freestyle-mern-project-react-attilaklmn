@@ -4,7 +4,8 @@ const Filter = props => {
     return (
         <div className="filters">
             <form onSubmit={props.onFilter}>
-
+                <label>Name</label>
+                <input type="text" name="name" placeholder="Card name..."></input>
                 <label>Mana</label>
                 <select type="text" name="manaCost">
                     <option value="">All</option>
