@@ -10,6 +10,7 @@ if (!MONGO_URL) {
   console.error("Missing MONGO_URL environment variable");
   process.exit(1);
 }
+
 const app = express();
 app.use(express.json());
 
@@ -42,6 +43,15 @@ app.get("/api/users/", async (req, res) => {
 
 app.get("/api/users/:id", async (req, res) => {
   const user = await UserModel.findById(req.params.id);
+  return res.json(user);
+});
+
+app.get("/api/users/favorites/:id", async (req, res) => {
+  console.log(req.params.id)
+  const user = await UserModel.findById(req.params.id).populate({
+    path: "favorites",
+    model: "Card",
+  });
   return res.json(user);
 });
 
