@@ -2,8 +2,10 @@ import { useEffect, useState, useMemo } from "react";
 import "./CardList.css";
 import Card from "../Components/Card";
 import Pagination from "../Components/Card/Pagination";
+import Filter from "../Components/Card/Filter";
 
-let PageSize = 12;
+
+let PageSize = 10;
 
 const fetchCurrentUser = (userId) => {
   return fetch(`http://localhost:8080/api/users/${userId}`).then((res) =>
@@ -78,12 +80,60 @@ const CardList = () => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return cardList.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, isLoading]);
+  }, [currentPage, isLoading, cardList]);
+
+  const handleFilter = (event) => {
+    event.preventDefault();
+    //const {attack, health, manaCost, classId, cardSetId} = event.;
+    const manaCost = event.target.manaCost.value
+    const attack = event.target.attack.value;
+    const health = event.target.health.value;
+    const type = event.target.type.value;
+    const rarity = event.target.rarity.value;
+    const cardClass = event.target.cardClass.value;
+    const cardSetId = event.target.cardSetId.value;
+    const set = event.target.set.value;
+
+    let url = "?";
+    if (manaCost !== "") {
+      url += `manaCost=${manaCost}&`
+    }
+    if (attack !== "") {
+      url += `attack=${attack}&`
+    }
+    if (health !== "") {
+      url += `health=${health}&`
+    }
+    if (type !== "") {
+      url += `cardTypeId=${type}&`
+    }
+    if (rarity !== "") {
+      url += `rarityId=${rarity}&`
+    }
+    if (cardClass !== "") {
+      url += `classId=${cardClass}&`
+    }
+    if (cardSetId !== "") {
+      url += `cardSetId=${cardSetId}&`
+    }
+
+    
+
+
+
+
+
+    setIsLoading(true)
+    fetch(`http://localhost:8080/api/cards/filter/${url}`).then(res => res.json()).then(cards => {
+      setCardList(cards);
+      setIsLoading(false);
+    })
+  }
 
   return (
     <div className="main">
       <div className="content">
-        {!isLoading && <div className="filters">Filters.</div>}
+        <Filter onFilter={handleFilter} />
         <div className="cardlist">
           {!isLoading ? (
             currentTableData.map((card, index) => {

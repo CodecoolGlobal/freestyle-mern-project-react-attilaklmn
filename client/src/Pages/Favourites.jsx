@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import Card from "../Components/Card";
 import Pagination from "../Components/Card/Pagination";
 
-let PageSize = 12;
+let PageSize = 10;
 
 const fetchCurrentUser = (userId) => {
   return fetch(`http://localhost:8080/api/users/${userId}`).then((res) =>
@@ -47,7 +47,7 @@ function Favorites() {
   useEffect(() => {
     if (localStorage.getItem("isLoggedIn")) {
       fetchCurrentUser(localStorage.getItem("userLoggedIn")).then((user) =>
-      setCurrentUser(user)
+        setCurrentUser(user)
       );
     }
   }, []);
@@ -78,36 +78,36 @@ function Favorites() {
     return favorites.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, isLoading]);
 
-  
- 
+
+
   return (
     <div className="content">
-        <div className="cardlist">
-          {!isLoading ? (
-            currentTableData.map((card, index) => {
-              return (
-                <Card
-                  key={index}
-                  card={card}
-                  onFavoriteClick={handleAddToFavorites}
-                  currentUser={currentUser}
-                ></Card>
-              );
-            })
-          ) : (
-            <div className="loading">Loading...</div>
-          )}
-        </div>
-        {!isLoading && (
-          <Pagination
-            className="pagination-bar"
-            currentPage={currentPage}
-            totalCount={favorites.length}
-            pageSize={PageSize}
-            onPageChange={(page) => setCurrentPage(page)}
-          />
+      <div className="cardlist">
+        {!isLoading ? (
+          currentTableData.map((card, index) => {
+            return (
+              <Card
+                key={index}
+                card={card}
+                onFavoriteClick={handleAddToFavorites}
+                currentUser={currentUser}
+              ></Card>
+            );
+          })
+        ) : (
+          <div className="loading">Loading...</div>
         )}
       </div>
+      {!isLoading && (
+        <Pagination
+          className="pagination-bar"
+          currentPage={currentPage}
+          totalCount={favorites.length}
+          pageSize={PageSize}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
+      )}
+    </div>
   );
 }
 

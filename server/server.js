@@ -132,7 +132,7 @@ app.get("/api/cards/filter/", async (req, res) => {
       if (isNaN(req.query[property])) {
         modelToFind[property] = new RegExp(req.query[property], "i");
       } else {
-        modelToFind[property] = req.query[property];
+        modelToFind[property] = req.query[property]
       }
     }
   }
