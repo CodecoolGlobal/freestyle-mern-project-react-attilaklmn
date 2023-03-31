@@ -8,7 +8,8 @@ import ErrorPage from "./Pages/ErrorPage";
 import CardList from "./Pages/CardList";
 import Main from "./Pages/Main";
 import Login from "./Pages/Login";
-import Favorites from "./Pages/Favourites"
+import Favorites from "./Pages/Favourites";
+import UserProvider from "./Context/UserContext";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
       {
         path: "/favorites",
         element: <Favorites />,
-      }
+      },
     ],
   },
 ]);
@@ -39,7 +40,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   </React.StrictMode>
 );
 

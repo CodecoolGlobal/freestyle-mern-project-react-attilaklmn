@@ -6,7 +6,7 @@ const UserSchema = new Schema({
   password: String,
   favorites: {
     type: [mongoose.Schema.Types.ObjectId],
-    ref: "cards",
+    ref: "Card",
     default: [],
   },
 });

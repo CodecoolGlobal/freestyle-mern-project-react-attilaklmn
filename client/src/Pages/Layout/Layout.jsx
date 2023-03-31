@@ -1,16 +1,18 @@
 import { Outlet, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext, useUser } from "../../Context/UserContext";
 
 import "./Layout.css";
 
 const Layout = () => {
   // const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
+  /*useEffect(() => {
     setIsLoggedIn(localStorage.getItem("isLoggedIn"));
-  }, []);
+  }, []);*/
+  const { isLoggedIn, setIsLoggedIn } = useUser();
 
   return (
     <div className="Layout">

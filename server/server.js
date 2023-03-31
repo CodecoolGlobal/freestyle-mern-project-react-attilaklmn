@@ -34,10 +34,7 @@ const createNewCard = async (card) => {
 };
 
 app.get("/api/users/", async (req, res) => {
-  const users = await UserModel.find().populate({
-    path: "favorites",
-    model: "Card",
-  });
+  const users = await UserModel.find().populate('favorites');
   return res.json(users);
 });
 
@@ -46,12 +43,9 @@ app.get("/api/users/:id", async (req, res) => {
   return res.json(user);
 });
 
-app.get("/api/users/favorites/:id", async (req, res) => {
+app.get("/api/users/:id/favorites/", async (req, res) => {
   console.log(req.params.id);
-  const user = await UserModel.findById(req.params.id).populate({
-    path: "favorites",
-    model: "Card",
-  });
+  const user = await UserModel.findById(req.params.id).populate('favorites');
   return res.json(user);
 });
 
@@ -61,11 +55,11 @@ app.post("/api/users/register/", async (req, res, next) => {
   if (checkIfUserExists) {
     return res
       .status(400)
-      .json(`${userName} was taken! Please choose different username!`);
+      .send(`${userName} was taken! Please choose different username!`);
   } else {
     try {
-      const saved = await UserModel.create({ userName, password });
-      return res.status(200).json(`${userName} registered!`);
+      await UserModel.create({ userName, password });
+      return res.status(200).end();
     } catch (err) {
       return next(err);
     }

@@ -3,6 +3,7 @@ import "./CardList.css";
 import Card from "../Components/Card";
 import Pagination from "../Components/Card/Pagination";
 import Filter from "../Components/Card/Filter";
+import { useUser } from "../Context/UserContext";
 
 let PageSize = 10;
 
@@ -34,10 +35,11 @@ const fetchAddToFavorite = (cardId, userId) => {
 };
 
 const CardList = () => {
+  const { currentUser, setCurrentUser } = useUser();
   const [isLoading, setIsLoading] = useState(false);
   const [cardList, setCardList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [currentUser, setCurrentUser] = useState(undefined);
+  //const [currentUser, setCurrentUser] = useState(undefined);
 
   const fetchCardList = () => {
     setIsLoading(true);
@@ -52,13 +54,13 @@ const CardList = () => {
       });
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (localStorage.getItem("isLoggedIn")) {
       fetchCurrentUser(localStorage.getItem("userLoggedIn")).then((user) =>
         setCurrentUser(user)
       );
     }
-  }, []);
+  }, []);*/
 
   useEffect(() => {
     fetchCardList().then((cards) => {
@@ -92,6 +94,10 @@ const CardList = () => {
     const rarity = event.target.rarity.value;
     const cardClass = event.target.cardClass.value;
     const cardSetId = event.target.cardSetId.value;
+
+    const queryString = new URLSearchParams();
+    queryString.append('manaCost', manaCost);
+    queryString.toString(); // ?manaCost=10
 
     let url = "?";
     if (manaCost !== "") {
