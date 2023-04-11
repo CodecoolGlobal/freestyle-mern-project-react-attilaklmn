@@ -1,0 +1,11 @@
+.builder-container {
+  display: flex;
+  justify-content: center;
+}
+
+.builder-container .builder-deck-container {
+  width: 20%;
+  height: 100%;
+  background-color: rgb(221, 195, 112, 1);
+  text-align: center;
+}

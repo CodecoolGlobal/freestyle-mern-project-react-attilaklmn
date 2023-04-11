@@ -13,7 +13,7 @@ const fetchCurrentUser = (userId) => {
 };
 
 const fetchAddToFavorite = (cardId, userId) => {
-  return fetch(`http://localhost:8080/api/users/${userId}`, {
+  return fetch(`http://localhost:8080/api/users/cards/${userId}`, {
     method: "PATCH",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ cardId }),
@@ -134,12 +134,14 @@ const CardList = () => {
         <div className="cardlist">
           {!isLoading ? (
             currentTableData.map((card, index) => {
+              let isDeckBuilder = false;
               return (
                 <Card
                   key={index}
                   card={card}
                   onFavoriteClick={handleAddToFavorites}
                   currentUser={currentUser}
+                  isDeckBuilder={isDeckBuilder}
                 ></Card>
               );
             })

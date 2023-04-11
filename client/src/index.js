@@ -8,7 +8,8 @@ import ErrorPage from "./Pages/ErrorPage";
 import CardList from "./Pages/CardList";
 import Main from "./Pages/Main";
 import Login from "./Pages/Login";
-import Favorites from "./Pages/Favourites"
+import Favorites from "./Pages/Favourites";
+import DeckBuilder from "./Pages/DeckBuilder";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,11 @@ const router = createBrowserRouter([
       {
         path: "/favorites",
         element: <Favorites />,
-      }
+      },
+      {
+        path: "/deck-builder",
+        element: <DeckBuilder />,
+      },
     ],
   },
 ]);

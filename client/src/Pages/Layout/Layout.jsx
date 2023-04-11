@@ -1,6 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 import "./Layout.css";
 
@@ -27,11 +27,18 @@ const Layout = () => {
             </Link>
           </li>
           {isLoggedIn && (
-            <li>
-              <Link to="/favorites">
-                <button type="button">Favorites</button>
-              </Link>
-            </li>
+            <Fragment>
+              <li>
+                <Link to="/favorites">
+                  <button type="button">Favorites</button>
+                </Link>
+              </li>
+              <li>
+                <Link to="/deck-builder">
+                  <button type="button">Deck builder</button>
+                </Link>
+              </li>
+            </Fragment>
           )}
           {isLoggedIn && (
             <li>
