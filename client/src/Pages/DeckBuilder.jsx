@@ -5,8 +5,9 @@ import Pagination from "../Components/Card/Pagination";
 import Filter from "../Components/Card/Filter";
 import ClassPicker from "../Components/ClassPicker";
 import DeckPicker from "../Components/DeckPicker";
+import CroppedCards from "../Components/CroppedCards";
 
-let PageSize = 10;
+let PageSize = 16;
 
 const fetchCurrentUser = (userId) => {
   return fetch(`http://localhost:8080/api/users/${userId}`).then((res) =>
@@ -142,8 +143,23 @@ const DeckBuilder = () => {
       });
   };
 
+  function getOccurrence(array, value) {
+    return array.filter((v) => v.name === value.name).length;
+  }
+
   const handleAddToDeck = (card) => {
-    setCurrentDeckCards([...currentDeckCards, card]);
+    if (
+      Number(card.rarityId) === 5 &&
+      getOccurrence([...currentDeckCards], card) >= 1
+    ) {
+      alert("A legendary card can only be used once in every deck");
+    } else if (getOccurrence([...currentDeckCards], card) >= 2) {
+      alert("A card can only occur twice in a deck!");
+    } else if (Number(isClassPicked) !== card.classId && card.classId !== 12) {
+      alert("Different class set!");
+    } else if (currentDeckCards.length >= 30) {
+      alert("A deck should have 30 cards");
+    } else setCurrentDeckCards([...currentDeckCards, card]);
   };
 
   const handleRemoveFromDeck = (card) => {
@@ -207,26 +223,29 @@ const DeckBuilder = () => {
                   <div className="loading">Loading...</div>
                 )}
               </div>
-              <div className="builder-deck-container">
-                <div>Deck</div>
-                <button onClick={handleSave}>Save!</button>
-                <input
-                  type="text"
-                  onChange={(event) => setDeckName(event.target.value)}
-                  defaultValue={deckName}
-                ></input>
-                {currentDeckCards.map((card, index) => {
-                  return (
-                    <div key={index}>
-                      <img alt="card.name" src={card.cropImage}></img>
-                      <div>{card.name}</div>
-                      <button onClick={() => handleRemoveFromDeck(card)}>
-                        X
-                      </button>
-                    </div>
-                  );
-                })}
-              </div>
+              {!isLoading && (
+                <div className="builder-deck-container">
+                  <div>Deck</div>
+                  <button onClick={handleSave}>Save!</button>
+                  <input
+                    type="text"
+                    onChange={(event) => setDeckName(event.target.value)}
+                    defaultValue={deckName}
+                  ></input>
+                  <div>Card count: {currentDeckCards.length}/30</div>
+                  {currentDeckCards
+                    .sort((a, b) => a.manaCost - b.manaCost)
+                    .map((card, index) => {
+                      return (
+                        <CroppedCards
+                          key={index}
+                          onRemoveClick={handleRemoveFromDeck}
+                          card={card}
+                        ></CroppedCards>
+                      );
+                    })}
+                </div>
+              )}
             </div>
             {!isLoading && (
               <Pagination
