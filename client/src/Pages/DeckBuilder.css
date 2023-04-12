@@ -10,9 +10,9 @@
   text-align: center;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  border-bottom: 3px solid rgb(115, 170, 207, 1);
-  border-left: 3px solid rgb(115, 170, 207, 1);
-  border-top: 3px solid rgb(115, 170, 207, 1);
+  border-bottom: 3px solid rgb(115, 170, 207, 0.7);
+  border-left: 3px solid rgb(115, 170, 207, 0.7);
+  border-top: 3px solid rgb(115, 170, 207, 0.7);
   box-shadow: -3px 3px 3px 3px rgb(255, 255, 255, 0.5);
 }
 

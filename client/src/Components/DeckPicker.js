@@ -7,7 +7,7 @@ const DeckPicker = ({ onDeckClick, currentUser, currentClass }) => {
 
   return (
     <div className="deck-picker-container">
-      <div className="pick-a-deck">Pick a Deck</div>
+      <div className="pick-a-deck">Pick a deck!</div>
       <div className="deck-choices-container">
         {decks.length > 0 && (
           <div className="choose-existing-deck">
