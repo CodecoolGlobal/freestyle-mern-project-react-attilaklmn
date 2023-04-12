@@ -17,28 +17,29 @@ const CroppedCards = ({ card, onRemoveClick }) => {
           onMouseOver={() => setOpen(true)}
           onMouseOut={() => setOpen(false)}
         >
-          <img
-            className="cropped-card-image"
-            alt={card.name}
-            src={open ? card.image : card.cropImage}
-            style={
-              open
-                ? {
-                    scale: "5",
-                    width: "100px",
-                    zIndex: "30",
-                    position: "absolute",
-                    right: "150px",
-                  }
-                : {
-                    scale: "1",
-                    height: "100%",
-                    width: "100%",
-                    position: "relative",
-                    zIndex: "20",
-                  }
-            }
-          ></img>
+          <div className="cropped-image-container">
+            <img
+              className="cropped-card-image"
+              alt={card.name}
+              src={open ? card.image : card.cropImage}
+              style={
+                open
+                  ? {
+                      scale: "5",
+                      width: "100px",
+                      zIndex: "30",
+                      position: "absolute",
+                      right: "250px",
+                    }
+                  : {
+                      scale: "1",
+                      objectFit: "contain",
+                      position: "relative",
+                      zIndex: "20",
+                    }
+              }
+            ></img>
+          </div>
         </div>
 
         <button

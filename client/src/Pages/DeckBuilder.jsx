@@ -170,8 +170,12 @@ const DeckBuilder = () => {
   };
 
   const handleOnDeckClick = (deck) => {
-    setIsDeckPicked(deck._id);
-    setDeckName(deck.name);
+    if (deck === "new") {
+      setIsDeckPicked(deck);
+    } else {
+      setIsDeckPicked(deck._id);
+      setDeckName(deck.name);
+    }
   };
 
   const handleSave = () => {
@@ -225,14 +229,21 @@ const DeckBuilder = () => {
               </div>
               {!isLoading && (
                 <div className="builder-deck-container">
-                  <div>Deck</div>
-                  <button onClick={handleSave}>Save!</button>
-                  <input
-                    type="text"
-                    onChange={(event) => setDeckName(event.target.value)}
-                    defaultValue={deckName}
-                  ></input>
-                  <div>Card count: {currentDeckCards.length}/30</div>
+                  <div className="deck-data">
+                    <div className="deck-deck">Your Deck</div>
+                    <button className="save-deck-button" onClick={handleSave}>
+                      Save!
+                    </button>
+                    <input
+                      className="deck-name-input"
+                      type="text"
+                      onChange={(event) => setDeckName(event.target.value)}
+                      defaultValue={deckName}
+                    ></input>
+                    <div className="card-count">
+                      Card count: {currentDeckCards.length}/30
+                    </div>
+                  </div>
                   {currentDeckCards
                     .sort((a, b) => a.manaCost - b.manaCost)
                     .map((card, index) => {
