@@ -7,7 +7,7 @@ import ClassPicker from "../Components/ClassPicker";
 import DeckPicker from "../Components/DeckPicker";
 import CroppedCards from "../Components/CroppedCards";
 
-let PageSize = 16;
+let PageSize = 20;
 
 const fetchCurrentUser = (userId) => {
   return fetch(`http://localhost:8080/api/users/${userId}`).then((res) =>
@@ -49,6 +49,15 @@ const DeckBuilder = () => {
   const [currentDeckCards, setCurrentDeckCards] = useState([]);
   const [deckName, setDeckName] = useState("");
 
+  const [mana0Height, setMana0Height] = useState(0);
+  const [mana1Height, setMana1Height] = useState(0);
+  const [mana2Height, setMana2Height] = useState(0);
+  const [mana3Height, setMana3Height] = useState(0);
+  const [mana4Height, setMana4Height] = useState(0);
+  const [mana5Height, setMana5Height] = useState(0);
+  const [mana6Height, setMana6Height] = useState(0);
+  const [mana7Height, setMana7Height] = useState(0);
+
   const fetchCardList = () => {
     setIsLoading(true);
     return fetch("http://localhost:8080/api/cards")
@@ -67,6 +76,27 @@ const DeckBuilder = () => {
       res.json()
     );
   };
+
+  useEffect(() => {
+    let totalMana = 0;
+    let eachManaCount = [0, 0, 0, 0, 0, 0, 0, 0];
+    for (let i = 0; i < currentDeckCards.length; i++) {
+      totalMana += currentDeckCards[i].manaCost;
+      if (currentDeckCards[i].manaCost <= 7) {
+        eachManaCount[`${Number(currentDeckCards[i].manaCost)}`]++;
+      } else {
+        eachManaCount[7]++;
+      }
+    }
+    setMana0Height((eachManaCount[0] / currentDeckCards.length) * 100);
+    setMana1Height((eachManaCount[1] / currentDeckCards.length) * 100);
+    setMana2Height((eachManaCount[2] / currentDeckCards.length) * 100);
+    setMana3Height((eachManaCount[3] / currentDeckCards.length) * 100);
+    setMana4Height((eachManaCount[4] / currentDeckCards.length) * 100);
+    setMana5Height((eachManaCount[5] / currentDeckCards.length) * 100);
+    setMana6Height((eachManaCount[6] / currentDeckCards.length) * 100);
+    setMana7Height((eachManaCount[7] / currentDeckCards.length) * 100);
+  }, [currentDeckCards]);
 
   useEffect(() => {
     if (localStorage.getItem("isLoggedIn")) {
@@ -189,9 +219,11 @@ const DeckBuilder = () => {
       saveNewDeck(deckSchema).then((deck) => {
         addDeckToUser(currentUser._id, deck);
         setIsDeckPicked(deck._id);
+        alert("Deck Saved!");
       });
     } else {
       updateDeck(deckSchema, isDeckPicked);
+      alert("Deck Updated!");
     }
   };
   return (
@@ -208,9 +240,10 @@ const DeckBuilder = () => {
         {isDeckPicked && (
           <Fragment>
             <Filter onFilter={handleFilter} />
+            {isLoading && <div className="loading">Loading...</div>}
             <div className="builder-container">
               <div className="cardlist">
-                {!isLoading ? (
+                {!isLoading &&
                   currentTableData.map((card, index) => {
                     let isDeckBuilder = true;
                     return (
@@ -222,10 +255,7 @@ const DeckBuilder = () => {
                         onClick={handleAddToDeck}
                       ></Card>
                     );
-                  })
-                ) : (
-                  <div className="loading">Loading...</div>
-                )}
+                  })}
               </div>
               {!isLoading && (
                 <div className="builder-deck-container">
@@ -242,6 +272,52 @@ const DeckBuilder = () => {
                     ></input>
                     <div className="card-count">
                       Card count: {currentDeckCards.length}/30
+                    </div>
+                  </div>
+                  <div className="mana-box-container">
+                    <div className="mana-box">
+                      <div
+                        className="mana-column"
+                        style={{ height: `${mana0Height}%` }}
+                      ></div>
+                      <div
+                        className="mana-column"
+                        style={{ height: `${mana1Height}%` }}
+                      ></div>
+                      <div
+                        className="mana-column"
+                        style={{ height: `${mana2Height}%` }}
+                      ></div>
+                      <div
+                        className="mana-column"
+                        style={{ height: `${mana3Height}%` }}
+                      ></div>
+                      <div
+                        className="mana-column"
+                        style={{ height: `${mana4Height}%` }}
+                      ></div>
+                      <div
+                        className="mana-column"
+                        style={{ height: `${mana5Height}%` }}
+                      ></div>
+                      <div
+                        className="mana-column"
+                        style={{ height: `${mana6Height}%` }}
+                      ></div>
+                      <div
+                        className="mana-column"
+                        style={{ height: `${mana7Height}%` }}
+                      ></div>
+                    </div>
+                    <div className="mana-number-container">
+                      <div className="mana-number">0</div>
+                      <div className="mana-number">1</div>
+                      <div className="mana-number">2</div>
+                      <div className="mana-number">3</div>
+                      <div className="mana-number">4</div>
+                      <div className="mana-number">5</div>
+                      <div className="mana-number">6</div>
+                      <div className="mana-number">7</div>
                     </div>
                   </div>
                   {currentDeckCards

@@ -6,7 +6,10 @@ const CroppedCards = ({ card, onRemoveClick }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="cropped-card">
+    <div
+      className="cropped-card"
+      /*  style={{ backgroundImage: `url("${card.cropImage}")` } }*/
+    >
       <div className="manacost-name-container">
         <div className="cropped-card-manacost">{card.manaCost}</div>
         <div className="cropped-card-name">{card.name}</div>
