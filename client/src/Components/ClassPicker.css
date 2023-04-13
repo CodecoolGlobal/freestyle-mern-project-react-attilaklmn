@@ -1,0 +1,94 @@
+.class-picker-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  padding-bottom: 100px;
+}
+
+.pick-a-class {
+  margin-top: 50px;
+  font-size: 5rem;
+  margin-bottom: 100px;
+  text-decoration: underline;
+}
+
+.all-class-container {
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 50px;
+}
+
+.all-class-container div:nth-child(11) {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+.image-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300px;
+}
+
+.class-image {
+  border-radius: 100px;
+  background-color: black;
+  box-shadow: 0px 0px 2.5px 7.5px rgb(4, 5, 56);
+}
+
+.class-image:hover {
+  box-shadow: 0px 0px 5px 15px rgb(168, 218, 220);
+  transform: scale(1.2);
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.class-title {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.api-deck-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.api-fetch-text {
+  font-size: 2rem;
+}
+
+.api-fetch-input-button-container {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.api-deck-input {
+  font-family: inherit;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  background-color: rgb(115, 170, 207, 0.5);
+  text-align: center;
+}
+
+.api-deck-input:hover {
+  background-color: rgb(115, 170, 207, 1);
+  box-shadow: 0px 0px 5px rgb(0, 0, 0);
+}
+
+.api-deck-fetch-button {
+  font-size: 1.5rem;
+  font-family: inherit;
+  border-radius: 5px;
+  background-color: rgb(115, 170, 207, 0.5);
+  text-align: center;
+}
+
+.api-deck-fetch-button:hover {
+  cursor: pointer;
+  background-color: rgb(115, 170, 207, 1);
+  box-shadow: 0px 0px 5px rgb(0, 0, 0);
+}

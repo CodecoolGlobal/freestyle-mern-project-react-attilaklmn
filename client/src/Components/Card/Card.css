@@ -16,7 +16,7 @@
     #fff 100%
   );
   border-radius: 0.7rem;
-  width: 13vw;
+  height: 400px;
   text-align: center;
 }
 .card:hover {
@@ -31,7 +31,8 @@
 }
 
 .card img {
-  width: 200px;
+  width: 250px;
+  height: 300px;
   height: auto;
   margin-left: 0.6vw;
 }

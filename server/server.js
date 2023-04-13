@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const CardModel = require("./db/card.model");
 const UserModel = require("./db/user.model");
+const DeckModel = require("./db/deck.model");
 
 const { MONGO_URL, PORT = 8080 } = process.env;
 
@@ -34,16 +35,20 @@ const createNewCard = async (card) => {
 };
 
 app.get("/api/users/", async (req, res) => {
-  const users = await UserModel.find().populate({
-    path: "favorites",
-    model: "Card",
-  });
+  const users = await UserModel.find().populate("favorites decks");
   return res.json(users);
 });
 
 app.get("/api/users/:id", async (req, res) => {
-  const user = await UserModel.findById(req.params.id);
+  const user = await UserModel.findById(req.params.id).populate(
+    "favorites decks"
+  );
   return res.json(user);
+});
+
+app.get("/api/decks/:id", async (req, res) => {
+  const deck = await DeckModel.findById(req.params.id).populate("cards");
+  return res.json(deck);
 });
 
 app.get("/api/users/favorites/:id", async (req, res) => {
@@ -72,6 +77,16 @@ app.post("/api/users/register/", async (req, res, next) => {
   }
 });
 
+app.post("/api/decks/new/", async (req, res, next) => {
+  const deck = req.body;
+  try {
+    const saved = await DeckModel.create(deck);
+    return res.status(200).json(saved);
+  } catch (err) {
+    return next(err);
+  }
+});
+
 app.post("/api/users/login/", async (req, res, next) => {
   const { userName, password } = req.body;
   const userStored = await UserModel.findOne({ userName: userName });
@@ -84,7 +99,41 @@ app.post("/api/users/login/", async (req, res, next) => {
   } else res.status(400).json("Wrong Username!");
 });
 
-app.patch("/api/users/:id", async (req, res, next) => {
+app.patch("/api/users/decks/:id", async (req, res, next) => {
+  try {
+    const { deckId } = req.body;
+    const userToUpdate = await UserModel.findById(req.params.id);
+    if (!userToUpdate.decks.includes(deckId)) {
+      userToUpdate.decks.push(deckId);
+    } else {
+      userToUpdate.decks(splice(userToUpdate.decks.indexOf(deckId), 1));
+    }
+    const user = await UserModel.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: userToUpdate },
+      { new: true }
+    );
+    return res.status(200).json(user);
+  } catch (err) {
+    return next(err);
+  }
+});
+
+app.patch("/api/decks/:id", async (req, res, next) => {
+  try {
+    const { deck } = req.body;
+    const updatedDeck = await DeckModel.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: deck },
+      { new: true }
+    );
+    return res.status(200).json(updatedDeck);
+  } catch (err) {
+    return next(err);
+  }
+});
+
+app.patch("/api/users/cards/:id", async (req, res, next) => {
   try {
     const { cardId } = req.body;
     const userToUpdate = await UserModel.findById(req.params.id);

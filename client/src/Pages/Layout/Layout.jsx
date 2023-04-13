@@ -1,16 +1,22 @@
 import { Outlet, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import "./Layout.css";
 
 const Layout = () => {
+  const location = useLocation();
   // const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("isLoggedIn"));
   }, []);
+
+  const reloadPage = () => {
+    if (location.pathname === "/deck-builder") window.location.reload(true);
+  };
 
   return (
     <div className="Layout">
@@ -27,11 +33,20 @@ const Layout = () => {
             </Link>
           </li>
           {isLoggedIn && (
-            <li>
-              <Link to="/favorites">
-                <button type="button">Favorites</button>
-              </Link>
-            </li>
+            <Fragment>
+              <li>
+                <Link to="/favorites">
+                  <button type="button">Favorites</button>
+                </Link>
+              </li>
+              <li>
+                <Link to="/deck-builder">
+                  <button onClick={reloadPage} type="button">
+                    Deck builder
+                  </button>
+                </Link>
+              </li>
+            </Fragment>
           )}
           {isLoggedIn && (
             <li>

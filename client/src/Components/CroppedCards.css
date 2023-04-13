@@ -1,0 +1,68 @@
+.cropped-card {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  width: 100%;
+  min-height: 60px;
+  margin-bottom: 1px;
+}
+
+.cropped-card:hover {
+  background: #fff 0%;
+}
+
+.cropped-card .manacost-name-container {
+  display: flex;
+  width: 190px;
+  margin-right: 5%;
+}
+
+.cropped-card .cropped-card-manacost {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 100%;
+  width: 30px;
+  background-color: rgb(88, 88, 196);
+}
+
+.cropped-card .cropped-card-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+}
+
+.cropped-card .image-button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 220px;
+}
+
+.cropped-card .cropped-image-container {
+  display: flex;
+
+  width: 200px;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: hidden;
+}
+
+.cropped-card .cropped-card-image {
+  display: flex;
+  transition: all 0s linear;
+}
+
+.cropped-card .cropped-card-remove-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(189, 29, 23, 0.5);
+}
+
+.cropped-card .cropped-card-remove-button:hover {
+  background-color: rgb(189, 29, 23);
+  cursor: pointer;
+}

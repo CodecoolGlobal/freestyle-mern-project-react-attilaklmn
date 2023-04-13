@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from "react";
 import Card from "../Components/Card";
 import Pagination from "../Components/Card/Pagination";
 
@@ -11,7 +11,7 @@ const fetchCurrentUser = (userId) => {
 };
 
 const fetchAddToFavorite = (cardId, userId) => {
-  return fetch(`http://localhost:8080/api/users/${userId}`, {
+  return fetch(`http://localhost:8080/api/users/cards/${userId}`, {
     method: "PATCH",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ cardId }),
@@ -40,8 +40,13 @@ function Favorites() {
 
   const fetchFavorites = () => {
     setIsLoading(true);
-    return fetch(`http://localhost:8080/api/users/favorites/${localStorage.getItem("userLoggedIn")}`)
-      .then((res) => res.json()).then(user => user.favorites)
+    return fetch(
+      `http://localhost:8080/api/users/favorites/${localStorage.getItem(
+        "userLoggedIn"
+      )}`
+    )
+      .then((res) => res.json())
+      .then((user) => user.favorites);
   };
 
   useEffect(() => {
@@ -58,7 +63,6 @@ function Favorites() {
       setIsLoading(false);
     });
   }, []);
-
 
   const handleAddToFavorites = async (cardId) => {
     const user = await fetchAddToFavorite(
@@ -78,19 +82,19 @@ function Favorites() {
     return favorites.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, isLoading]);
 
-
-
   return (
     <div className="content">
       <div className="cardlist">
         {!isLoading ? (
           currentTableData.map((card, index) => {
+            let isDeckBuilder = false;
             return (
               <Card
                 key={index}
                 card={card}
                 onFavoriteClick={handleAddToFavorites}
                 currentUser={currentUser}
+                isDeckBuilder={isDeckBuilder}
               ></Card>
             );
           })
