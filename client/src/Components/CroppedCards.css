@@ -11,10 +11,15 @@
   background: #fff 0%;
 }
 
+.cropped-positioner {
+  position: relative;
+}
+
 .cropped-normal-image {
-  position: fixed;
-  right: 500px;
-  top: 100px;
+  /*   position: absolute; */
+  /* position: fixed; */
+  /*   right: 500px;
+  top: 100px; */
 }
 
 .cropped-card .manacost-name-container {

@@ -18,8 +18,9 @@ const fetchCurrentUser = (userId) => {
 };
 
 const fetchDeckFromApi = (deckString) => {
+  console.log(deckString);
   return fetch(
-    `https://us.api.blizzard.com/hearthstone/deck?locale=en_US&code=${deckString}&access_token=EUws3JWFflScwAcfvyPjP4f1VVXN66szuB`
+    `https://us.api.blizzard.com/hearthstone/deck?locale=en_US&code=${deckString}&access_token=EU9uSYfLffOSOuamuA03RnlURraW90JViT`
   ).then((res) => {
     if (res.status === 200) {
       return res.json();
@@ -269,21 +270,6 @@ const DeckBuilder = () => {
   return (
     <div className="main">
       <div className="content">
-        {isLoading && <div className="loading">Loading...</div>}
-        {!isLoading && !isClassPicked && (
-          <ClassPicker
-            onClassClick={setIsClassPicked}
-            setDeckString={setDeckString}
-            onClick={handleFetchDeckFromApi}
-          />
-        )}
-        {isClassPicked && !isDeckPicked && (
-          <DeckPicker
-            onDeckClick={handleOnDeckClick}
-            currentUser={currentUser}
-            currentClass={isClassPicked}
-          />
-        )}
         {isDeckPicked && (
           <Fragment>
             <Filter onFilter={handleFilter} />
@@ -349,6 +335,21 @@ const DeckBuilder = () => {
               />
             )}
           </Fragment>
+        )}
+        {isLoading && <div className="loading">Loading...</div>}
+        {!isLoading && !isClassPicked && (
+          <ClassPicker
+            onClassClick={setIsClassPicked}
+            setDeckString={setDeckString}
+            onClick={handleFetchDeckFromApi}
+          />
+        )}
+        {isClassPicked && !isDeckPicked && (
+          <DeckPicker
+            onDeckClick={handleOnDeckClick}
+            currentUser={currentUser}
+            currentClass={isClassPicked}
+          />
         )}
       </div>
     </div>

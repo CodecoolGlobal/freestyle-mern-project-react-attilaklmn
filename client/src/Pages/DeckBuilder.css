@@ -102,6 +102,7 @@
   justify-content: space-around;
   align-items: flex-end;
   border-radius: 10px;
+  box-shadow: 0px 0px 5px rgb(0, 0, 0);
 }
 
 .mana-number-container {
