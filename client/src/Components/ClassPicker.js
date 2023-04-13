@@ -1,6 +1,6 @@
 import "./ClassPicker.css";
 
-const ClassPicker = ({ onClassClick }) => {
+const ClassPicker = ({ onClassClick, setDeckString, onClick }) => {
   return (
     <div className="class-picker-container">
       <div className="pick-a-class">Pick a class!</div>
@@ -103,6 +103,20 @@ const ClassPicker = ({ onClassClick }) => {
             onClick={() => onClassClick("10")}
           ></img>
           <div className="class-title">Warrior</div>
+        </div>
+      </div>
+      <div className="api-deck-container">
+        <div className="api-fetch-text">Fetch a deck from Blizzard API!</div>
+        <div className="api-fetch-input-button-container">
+          <input
+            className="api-deck-input"
+            type="text"
+            onChange={(e) => setDeckString(e.target.value)}
+            defaultValue="Enter deck code!"
+          ></input>
+          <button className="api-deck-fetch-button" onClick={onClick}>
+            Fetch deck!
+          </button>
         </div>
       </div>
     </div>

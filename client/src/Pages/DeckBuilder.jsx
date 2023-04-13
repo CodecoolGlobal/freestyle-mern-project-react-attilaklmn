@@ -6,6 +6,8 @@ import Filter from "../Components/Card/Filter";
 import ClassPicker from "../Components/ClassPicker";
 import DeckPicker from "../Components/DeckPicker";
 import CroppedCards from "../Components/CroppedCards";
+import ManaBox from "../Components/ManaBox";
+import DeckData from "../Components/DeckData";
 
 let PageSize = 20;
 
@@ -13,6 +15,16 @@ const fetchCurrentUser = (userId) => {
   return fetch(`http://localhost:8080/api/users/${userId}`).then((res) =>
     res.json()
   );
+};
+
+const fetchDeckFromApi = (deckString) => {
+  return fetch(
+    `https://us.api.blizzard.com/hearthstone/deck?locale=en_US&code=${deckString}&access_token=EUws3JWFflScwAcfvyPjP4f1VVXN66szuB`
+  ).then((res) => {
+    if (res.status === 200) {
+      return res.json();
+    } else return "shit";
+  });
 };
 
 const saveNewDeck = (deckSchema) => {
@@ -39,6 +51,12 @@ const updateDeck = (deckSchema, deckId) => {
   }).then((res) => res.json());
 };
 
+const fetchDeckWithCards = (deckId) => {
+  return fetch(`http://localhost:8080/api/decks/${deckId}`).then((res) =>
+    res.json()
+  );
+};
+
 const DeckBuilder = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [cardList, setCardList] = useState([]);
@@ -48,6 +66,8 @@ const DeckBuilder = () => {
   const [isDeckPicked, setIsDeckPicked] = useState(false);
   const [currentDeckCards, setCurrentDeckCards] = useState([]);
   const [deckName, setDeckName] = useState("");
+
+  const [deckString, setDeckString] = useState("");
 
   const [mana0Height, setMana0Height] = useState(0);
   const [mana1Height, setMana1Height] = useState(0);
@@ -71,10 +91,28 @@ const DeckBuilder = () => {
       });
   };
 
-  const fetchDeckWithCards = (deckId) => {
-    return fetch(`http://localhost:8080/api/decks/${deckId}`).then((res) =>
-      res.json()
-    );
+  const findApiDeckCards = (deck) => {
+    const foundCards = [];
+    for (let i = 0; i < deck.cards.length; i++) {
+      let current = cardList.filter((card) => card.id === deck.cards[i].id);
+      foundCards.push(...current);
+    }
+    return foundCards;
+  };
+
+  const handleFetchDeckFromApi = () => {
+    setIsLoading(true);
+    fetchDeckFromApi(deckString)
+      .then((deck) => {
+        if (deck === "shit") {
+          alert("fetch not succesful");
+        } else {
+          setIsClassPicked(deck.class.id);
+          setIsDeckPicked("new");
+          setCurrentDeckCards(findApiDeckCards(deck));
+        }
+      })
+      .then(() => setIsLoading(false));
   };
 
   useEffect(() => {
@@ -100,9 +138,11 @@ const DeckBuilder = () => {
 
   useEffect(() => {
     if (localStorage.getItem("isLoggedIn")) {
-      fetchCurrentUser(localStorage.getItem("userLoggedIn")).then((user) =>
-        setCurrentUser(user)
-      );
+      setIsLoading(true);
+      fetchCurrentUser(localStorage.getItem("userLoggedIn")).then((user) => {
+        setCurrentUser(user);
+        setIsLoading(false);
+      });
     }
   }, []);
 
@@ -229,7 +269,14 @@ const DeckBuilder = () => {
   return (
     <div className="main">
       <div className="content">
-        {!isClassPicked && <ClassPicker onClassClick={setIsClassPicked} />}
+        {isLoading && <div className="loading">Loading...</div>}
+        {!isLoading && !isClassPicked && (
+          <ClassPicker
+            onClassClick={setIsClassPicked}
+            setDeckString={setDeckString}
+            onClick={handleFetchDeckFromApi}
+          />
+        )}
         {isClassPicked && !isDeckPicked && (
           <DeckPicker
             onDeckClick={handleOnDeckClick}
@@ -261,65 +308,23 @@ const DeckBuilder = () => {
                 <div className="builder-deck-container">
                   <div className="deck-data">
                     <div className="deck-deck">Your Deck</div>
-                    <button className="save-deck-button" onClick={handleSave}>
-                      Save!
-                    </button>
-                    <input
-                      className="deck-name-input"
-                      type="text"
-                      onChange={(event) => setDeckName(event.target.value)}
-                      defaultValue={deckName}
-                    ></input>
-                    <div className="card-count">
-                      Card count: {currentDeckCards.length}/30
-                    </div>
+                    <DeckData
+                      onSaveClick={handleSave}
+                      setDeckName={setDeckName}
+                      deckName={deckName}
+                      currentDeckCards={currentDeckCards}
+                    />
                   </div>
-                  <div className="mana-box-container">
-                    <div className="mana-box">
-                      <div
-                        className="mana-column"
-                        style={{ height: `${mana0Height}%` }}
-                      ></div>
-                      <div
-                        className="mana-column"
-                        style={{ height: `${mana1Height}%` }}
-                      ></div>
-                      <div
-                        className="mana-column"
-                        style={{ height: `${mana2Height}%` }}
-                      ></div>
-                      <div
-                        className="mana-column"
-                        style={{ height: `${mana3Height}%` }}
-                      ></div>
-                      <div
-                        className="mana-column"
-                        style={{ height: `${mana4Height}%` }}
-                      ></div>
-                      <div
-                        className="mana-column"
-                        style={{ height: `${mana5Height}%` }}
-                      ></div>
-                      <div
-                        className="mana-column"
-                        style={{ height: `${mana6Height}%` }}
-                      ></div>
-                      <div
-                        className="mana-column"
-                        style={{ height: `${mana7Height}%` }}
-                      ></div>
-                    </div>
-                    <div className="mana-number-container">
-                      <div className="mana-number">0</div>
-                      <div className="mana-number">1</div>
-                      <div className="mana-number">2</div>
-                      <div className="mana-number">3</div>
-                      <div className="mana-number">4</div>
-                      <div className="mana-number">5</div>
-                      <div className="mana-number">6</div>
-                      <div className="mana-number">7</div>
-                    </div>
-                  </div>
+                  <ManaBox
+                    mana0Height={mana0Height}
+                    mana1Height={mana1Height}
+                    mana2Height={mana2Height}
+                    mana3Height={mana3Height}
+                    mana4Height={mana4Height}
+                    mana5Height={mana5Height}
+                    mana6Height={mana6Height}
+                    mana7Height={mana7Height}
+                  />
                   {currentDeckCards
                     .sort((a, b) => a.manaCost - b.manaCost)
                     .map((card, index) => {
