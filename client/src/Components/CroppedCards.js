@@ -24,25 +24,15 @@ const CroppedCards = ({ card, onRemoveClick }) => {
             <img
               className="cropped-card-image"
               alt={card.name}
-              src={open ? card.image : card.cropImage}
-              style={
-                open
-                  ? {
-                      scale: "5",
-                      width: "100px",
-                      zIndex: "30",
-                      position: "absolute",
-                      right: "250px",
-                    }
-                  : {
-                      scale: "1",
-                      objectFit: "contain",
-                      position: "relative",
-                      zIndex: "20",
-                    }
-              }
+              src={card.cropImage}
             ></img>
           </div>
+          <img
+            className="cropped-normal-image"
+            alt={card.name}
+            src={card.image}
+            style={open ? { opacity: "1" } : { opacity: "0" }}
+          ></img>
         </div>
 
         <button

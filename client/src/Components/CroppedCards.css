@@ -11,6 +11,12 @@
   background: #fff 0%;
 }
 
+.cropped-normal-image {
+  position: fixed;
+  right: 500px;
+  top: 100px;
+}
+
 .cropped-card .manacost-name-container {
   display: flex;
   width: 190px;
