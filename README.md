@@ -36,13 +36,12 @@
 
 <h1 align="center">Hearthstone card database & deck builder</h1
 
-  <p align="center">
-    project_description
+   <p align="center">
+    Educational project aimed to create a web based deck builder application for a card game
     <br />
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
     ·
     <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
     ·
@@ -85,8 +84,26 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+#### What is hearthstone?
 
+Hearthstone is a free-to-play online digital collectible card game developed and published by Blizzard Entertainment.
+In this game players compete against each others in 1v1 battles, where each player has to overcome their opponent with their pre-built deck, that consists of 30 cards, chosen from over 4000+ unique cards.
+
+#### Project goals
+
+When making this project, our main goal was to create a webservice, to help players manage their owned cards and plan the building of their ingame decks for their upcoming battles. 
+To achieve this we used the technologies of MERN Stack - MongoDB, Express.js, React and Node.js.
+
+#### Features
+  -  All 4000+ cards stored in a NoSQL (MongoDB) database, fetched and populated from the official Blizzard Hearthstone API. (more about the api on: https://develop.battle.net/documentation/hearthstone/game-data-apis)
+  -  User registration and login.
+  -  User's option to mark cards as favorites and store built decks.
+  -  Import ingame-built decks from the official API.
+  -  Sort, search and filter the cards.
+  -  Intuitive UI, eye-catching design.
+
+#### Note
+This project was created as an early educational group project to practice the technologies of the MERN Stack at the time of our exam season. To keep up the spirit in our fellow coding mates stressfully preparing for their coming exams we filled the project with several funny memes and gags. Please keep this in mind when checking this project.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
