@@ -82,8 +82,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 #### What is hearthstone?
 
 Hearthstone is a free-to-play online digital collectible card game developed and published by Blizzard Entertainment.
@@ -106,7 +104,7 @@ To achieve this we used the technologies of MERN Stack - MongoDB, Express.js, Re
 This project was created as an early educational group project to practice the technologies of the MERN Stack at the time of our exam season. To keep up the spirit in our fellow coding mates stressfully preparing for their coming exams we filled the project with several funny memes and gags. Please keep this in mind when checking this project.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 ### Built With
 
@@ -123,33 +121,44 @@ This project was created as an early educational group project to practice the t
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To run this application, you will need to run both the server and the client on your computer and also to connect to the mongodb database.
+To do this, please follow below steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+- Node.js
+- MongoDB account
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn
    ```
-3. Install NPM packages
+2. Install NPM packages in both the client and server folders
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Connect to the Mongo database. Hostname:
+   ```sh
+   hearthstonedb.jvbkn2z.mongodb.net
    ```
-
+4. Add a .env (exactly as-is : ".env") file to the server folder. The file should contain your MongoDB in the following format::
+   ```js
+   MONGO_URL=mongodb+srv://(YOUR_MONGODB_USERNAME):(YOUR_MONGODB_PASSWORD)@hearthstonedb.jvbkn2z.mongodb.net/?retryWrites=true&w=majority
+   ```
+6. Run the server
+   ```js
+   npm run dev
+   ```
+7. Run the client
+   ```js
+   npm start
+   ```
+8. Access the application in your browser (default address below)
+   ```sh
+   http://localhost:3000
+   ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -242,7 +251,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [license-url]: https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/szajkó-gábor-63883556
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/hs_login.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [Javascript]: https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white
