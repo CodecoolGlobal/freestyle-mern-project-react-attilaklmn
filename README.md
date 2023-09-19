@@ -166,9 +166,9 @@ To do this, please follow below steps.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+After the successfull installation, you can now browse the 4000+ cards, search and filter them.
+To access the full functionality of the application, you need to register a user, then log it in.
+After the login you can now add cards to the list of favorites or import/build your own decks!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -177,12 +177,18 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [X] Setup endpoints
+- [X] Create basic ui
+- [X] Initialize the database
+    - [X] Fetch the cards from Blizzard API and populate the database
+    - [X] Create user and deck tables and connect them.
+- [X] Implement card filter and search
+- [X] Implement user login/register
+- [X] Add favorites
+- [X] Add deck builder
+- [X] Update UI and design
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -205,36 +211,31 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Gábor Szajkó - szajkoggg@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn](https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+Creators:
+ - Attila Örs Kálmán
+ - Gábor Szajkó
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- LICENSE -->
+## License
+
+The readme template was distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
