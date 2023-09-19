@@ -30,19 +30,18 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn">
+    <img src="images/hs_logo.png" alt="Logo" width="600" height="200">
   </a>
 
-<h3 align="center">project_title</h3>
+<h1 align="center">Hearthstone card database & deck builder</h1
 
-  <p align="center">
-    project_description
+   <p align="center">
+    Educational project aimed to create a web based deck builder application for a card game
     <br />
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
     ·
     <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
     ·
@@ -83,13 +82,29 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+#### What is hearthstone?
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+Hearthstone is a free-to-play online digital collectible card game developed and published by Blizzard Entertainment.
+In this game players compete against each others in 1v1 battles, where each player has to overcome their opponent with their pre-built deck, that consists of 30 cards, chosen from over 4000+ unique cards.
 
+#### Project goals
+
+When making this project, our main goal was to create a webservice, to help players manage their owned cards and plan the building of their ingame decks for their upcoming battles. 
+To achieve this we used the technologies of MERN Stack - MongoDB, Express.js, React and Node.js.
+
+#### Features
+  -  All 4000+ cards stored in a NoSQL (MongoDB) database, fetched and populated from the official Blizzard Hearthstone API. (more about the api on: https://develop.battle.net/documentation/hearthstone/game-data-apis)
+  -  User registration and login.
+  -  User's option to mark cards as favorites and store built decks.
+  -  Import ingame-built decks from the official API.
+  -  Sort, search and filter the cards.
+  -  Intuitive UI, eye-catching design.
+
+#### Note
+This project was created as an early educational group project to practice the technologies of the MERN Stack at the time of our exam season. To keep up the spirit in our fellow coding mates stressfully preparing for their coming exams we filled the project with several funny memes and gags. Please keep this in mind when checking this project.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 ### Built With
 
@@ -106,33 +121,44 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To run this application, you will need to run both the server and the client on your computer and also to connect to the mongodb database.
+To do this, please follow below steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+- Node.js
+- MongoDB account
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn
    ```
-3. Install NPM packages
+2. Install NPM packages in both the client and server folders
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Connect to the Mongo database. Hostname:
+   ```sh
+   hearthstonedb.jvbkn2z.mongodb.net
    ```
-
+4. Add a .env (exactly as-is : ".env") file to the server folder. The file should contain your MongoDB in the following format::
+   ```js
+   MONGO_URL=mongodb+srv://(YOUR_MONGODB_USERNAME):(YOUR_MONGODB_PASSWORD)@hearthstonedb.jvbkn2z.mongodb.net/?retryWrites=true&w=majority
+   ```
+6. Run the server
+   ```js
+   npm run dev
+   ```
+7. Run the client
+   ```js
+   npm start
+   ```
+8. Access the application in your browser (default address below)
+   ```sh
+   http://localhost:3000
+   ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -140,9 +166,9 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+After the successfull installation, you can now browse the 4000+ cards, search and filter them.
+To access the full functionality of the application, you need to register a user, then log it in.
+After the login you can now add cards to the list of favorites or import/build your own decks!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -151,12 +177,18 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [X] Setup endpoints
+- [X] Create basic ui
+- [X] Initialize the database
+    - [X] Fetch the cards from Blizzard API and populate the database
+    - [X] Create user and deck tables and connect them.
+- [X] Implement card filter and search
+- [X] Implement user login/register
+- [X] Add favorites
+- [X] Add deck builder
+- [X] Update UI and design
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -179,36 +211,31 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Gábor Szajkó - szajkoggg@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn](https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+Creators:
+ - Attila Örs Kálmán
+ - Gábor Szajkó
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- LICENSE -->
+## License
+
+The readme template was distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
@@ -225,7 +252,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [license-url]: https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/szajkó-gábor-63883556
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/hs_login.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [Javascript]: https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white
