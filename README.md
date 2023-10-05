@@ -23,7 +23,6 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 
@@ -214,9 +213,10 @@ Don't forget to give the project a star! Thanks again!
 <!-- CONTACT -->
 ## Contact
 
-Gábor Szajkó - szajkoggg@gmail.com
+<p>Gábor Szajkó - szajkoggg@gmail.com</p>
+<p>Attila Kálmán - kalmanattila04@gmail.com</p>
 
-Project Link: [https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn](https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn)
+<p>Project Link: [https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn](https://github.com/CodecoolGlobal/freestyle-mern-project-react-attilaklmn)</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
